@@ -1,8 +1,13 @@
-# React + Vite
+# React + Vite + Tan Stack Query + Appwrite(backend as a service) + Ant Design
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Social media App
 
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Features Added
+- Signup, Signin, Signout
+- create new post with images
+- Edit post
+- Update profile
+- view all users
+- Like and bookmark post
+- view all post in Home Feed
+- Explore page implemented search feature (debouncing 200ms) and infinite scroll (using react-intersection-observer and tanstack query)
