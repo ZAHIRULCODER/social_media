@@ -324,9 +324,7 @@ export const deletePost = async (post) => {
 	}
 
 
-	console.log("back p",post);
-	console.log("back pid",post?.postID);
-	console.log("back imageid",post?.imageID);
+
 
 	try {
 		const statusCode = await databases.deleteDocument(

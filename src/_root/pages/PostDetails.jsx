@@ -16,9 +16,6 @@ const PostDetails = () => {
 	const { mutate: deletePost } = useDeletePost();
 	const { user } = useContext(AuthContext);
 
-	console.log("Post id: ", id);
-	console.log("image id: ", post?.imageID);
-	console.log("post: ", post);
 
 
 	const handleDeletePost = () => {
