@@ -317,21 +317,29 @@ export const updatePost = async (post) => {
 	}
 };
 
-export const deletePost = async (postID, imageID) => {
-	if (!postID || !imageID) return;
+export const deletePost = async (post) => {
+	if (!post?.postID || !post?.imageID) {
+		console.error("Invalid post data for deletion");
+		return { status: "error", message: "Invalid post data for deletion" };
+	}
+
+
+	console.log("back p",post);
+	console.log("back pid",post?.postID);
+	console.log("back imageid",post?.imageID);
 
 	try {
 		const statusCode = await databases.deleteDocument(
 			appwriteConfig.databaseID,
 			appwriteConfig.postsCollectionID,
-			postID
+			post?.postID
 		);
 
 		if (!statusCode) throw Error;
 
-		await deleteFile(imageID);
+		await deleteFile(post?.imageID);
 
-		return { status: "Ok" };
+		return { status: "ok" };
 	} catch (error) {
 		console.error("Error deleting post:", error);
 	}

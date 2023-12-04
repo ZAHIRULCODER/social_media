@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
-import { useGetPostById } from "../../tanstack-query/Queries";
-import { Link, useParams } from "react-router-dom";
+import { useDeletePost, useGetPostById } from "../../tanstack-query/Queries";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import AuthContext from "../../context/AuthContext";
 import { Card, Avatar, Button, Skeleton } from "antd";
 import { EditOutlined, DeleteOutlined } from "@ant-design/icons";
@@ -11,12 +11,34 @@ const { Meta } = Card;
 
 const PostDetails = () => {
 	const { id } = useParams();
+	const navigate = useNavigate();
 	const { data: post, isPending: isLoadingPostDetails } = useGetPostById(id);
+	const { mutate: deletePost } = useDeletePost();
 	const { user } = useContext(AuthContext);
 
-	const handleDeletePost = () => {};
+	console.log("Post id: ", id);
+	console.log("image id: ", post?.imageID);
+	console.log("post: ", post);
 
-	const isCreatedPostTimeNow = post?.$createdAt === post?.$updatedAt;
+
+	const handleDeletePost = () => {
+		try {
+			const deletedPost = deletePost({
+				...post,
+				postID: id,
+				imageID: post?.imageID,
+			});
+
+			if (deletedPost && deletedPost.status === "ok") {
+				navigate("/");
+			} else {
+				console.error("Failed to delete post.");
+			}
+		} catch (error) {
+			console.error("Error deleting post:", error);
+		}
+	};
+
 	return (
 		<>
 			{isLoadingPostDetails || !post ? (
@@ -59,9 +81,7 @@ const PostDetails = () => {
 												justifyContent: "space-between",
 											}}>
 											<p style={{ fontSize: 16, fontWeight: 600 }}>
-												{isCreatedPostTimeNow
-													? parseDate(post?.$createdAt)
-													: `Updated - ${parseDate(post?.$updatedAt)}`}
+												{parseDate(post?.$createdAt)}
 											</p>
 
 											<p style={{ fontSize: 14, fontWeight: 600 }}>
