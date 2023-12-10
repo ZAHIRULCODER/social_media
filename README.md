@@ -1,5 +1,10 @@
 # React + Vite + Tan Stack Query + Appwrite(backend as a service) + Ant Design
 
+## Auth Requirements:
+- Email: sample@gmail.com (Only one @ symbol and one . should be present in email address)
+- password: 12345678 (Must be 8 characters)
+
+
 ## Social media App
 
 ## Features Added
