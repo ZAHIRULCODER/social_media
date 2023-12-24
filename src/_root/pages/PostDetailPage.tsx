@@ -28,7 +28,8 @@ const PostDetailPage = () => {
 	const { user } = useContext(AuthContext);
 
 	//Queries
-	const { data: useDeletePost } = useGetPostById(id);
+	
+	const { data: post } = useGetPostById(id);
 	const { mutateAsync: deletePost, isPending } = useDeletePost();
 
 	const handleDeletePost = async () => {
