@@ -21,6 +21,8 @@ const SearchResults = ({
 	isSearchFetching,
 	searchedPosts,
 }: SearchResultProps) => {
+
+	
 	if (isSearchFetching) {
 		return (
 			<div
